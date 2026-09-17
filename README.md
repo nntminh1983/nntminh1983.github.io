@@ -14,8 +14,25 @@ assets/        your photo and CV go here
 
 | Put here | What it is |
 |---|---|
-| `assets/photo.jpg` | A square-ish portrait, ~600×700px. Until it exists the page shows an "MN" monogram instead. |
+| `assets/photo.jpg` | Portrait, 700×798px. Until it exists the page shows an "MN" monogram instead. |
 | `assets/CV_Minh_Nguyen_EN.pdf` | Linked from the **Download CV** button in the hero. |
+
+### Preparing the photo
+
+A photo straight from a camera is landscape and several megabytes — the wrong shape
+for the portrait frame, and too heavy for a static page. `prepare-photo.ps1` crops it
+to the frame's aspect ratio, resizes it and re-encodes it, typically to well under
+100 KB:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File prepare-photo.ps1 -Source "C:\path\to\original.jpg"
+```
+
+It writes `assets/photo.jpg` and prints the crop it chose. If the result cuts off the
+top of the head, lower `-FaceY` (default `0.42`, where `0` is the top edge of the
+photo); raise it to include more of the shoulders. `-Width` and `-Quality` are also
+adjustable. The script only affects images taller than the frame — a landscape source
+keeps its full height and is cropped at the sides.
 
 ## Running it
 

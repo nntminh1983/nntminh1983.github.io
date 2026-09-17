@@ -322,7 +322,9 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
 }
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
+/* object-position bias toward the upper half: if the supplied image is taller
+   than this box, the crop keeps the face rather than centring on the chest. */
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 
 .portrait-fallback {
   position: absolute;
