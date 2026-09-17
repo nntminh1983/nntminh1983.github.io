@@ -47,6 +47,11 @@
 
 * { box-sizing: border-box; }
 
+/* An author `display` rule beats the browser default for [hidden], so any
+   element given a display value would ignore the attribute and stay visible.
+   Settle it once here rather than per component. */
+[hidden] { display: none !important; }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 20px);
@@ -637,7 +642,6 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--border);
 }
 .pub:last-child { border-bottom: 1px solid var(--border); }
-.pub[hidden] { display: none; }
 
 .pub-year {
   font-size: 0.85rem;
