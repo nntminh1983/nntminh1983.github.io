@@ -9,3 +9,8 @@ desktop.ini
 
 # Python
 __pycache__/
+
+# File goc de tren may, khong dua len web:
+# anh 8 MB chua cat va ban CV trung ten cu.
+assets/NNTM_portrait*
+assets/CV_Minh Nguyen (EN).pdf

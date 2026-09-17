@@ -17,7 +17,7 @@
 
 param(
     [Parameter(Mandatory = $true)][string]$Source,
-    [string]$Destination = "$PSScriptRoot\assets\photo.jpg",
+    [string]$Destination,
     [int]$Width   = 700,
     [double]$Ratio = 1.14,   # chieu cao / chieu rong, khop voi CSS
     [double]$FaceY = 0.42,
@@ -26,6 +26,13 @@ param(
 
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
+
+# $PSScriptRoot rong khi script duoc goi bang duong dan tuong doi, khi do
+# "$PSScriptRoot\assets" se tro ve goc o dia. Tinh lai cho chac chan.
+if (-not $Destination) {
+    $base = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
+    $Destination = Join-Path $base 'assets\photo.jpg'
+}
 
 if (-not (Test-Path -LiteralPath $Source)) {
     Write-Error "Khong tim thay file: $Source"
